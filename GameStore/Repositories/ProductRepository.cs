@@ -1,6 +1,7 @@
 ﻿using GameStore.Data;
 using GameStore.Interfaces;
 using GameStore.Models;
+using GameStore.Models.Pages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,12 +24,12 @@ namespace GameStore.Repositories
 
         public IEnumerable<Product> GetAllProducts()
         {
-            return _context.Products;
+            return _context.Products.Include(e => e.Category);
         }
 
         public Product GetProduct(int id)
         {
-            return _context.Products.Find(id);
+            return _context.Products.Include(e => e.Category).FirstOrDefault(e => e.Id == id);
         }
 
         public void UpdateProduct(Product product)
@@ -37,7 +38,7 @@ namespace GameStore.Repositories
             .Where(productToUpdate => productToUpdate.Id == product.Id)
             .ExecuteUpdate(setters => setters
                 .SetProperty(productToUpdate => productToUpdate.Name, product.Name)
-                .SetProperty(productToUpdate => productToUpdate.Category, product.Category)
+                .SetProperty(productToUpdate => productToUpdate.CategoryId, product.CategoryId)
                 .SetProperty(productToUpdate => productToUpdate.RetailPrice, product.RetailPrice)
                 .SetProperty(productToUpdate => productToUpdate.PurchasePrice, product.PurchasePrice)
         );
@@ -64,5 +65,9 @@ namespace GameStore.Repositories
             _context.SaveChanges();
         }
 
+        public PagedList<Product> GetProducts(QueryOptions options)
+        {
+            return new PagedList<Product>(_context.Products.Include(e => e.Category), options);
+        }
     }
 }
