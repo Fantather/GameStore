@@ -16,7 +16,7 @@ namespace GameStore.Controllers
         [HttpGet]
         public ActionResult UpdateRange()
         {
-            return View(_categories.GetAllCategories());
+            return View(_categories.GetAllCategories().ToList());
         }
 
         [HttpPost]
