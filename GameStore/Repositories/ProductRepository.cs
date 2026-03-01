@@ -44,7 +44,7 @@ namespace GameStore.Repositories
         );
         }
 
-        public void UpdateAll(Product[] products)
+        public void UpdateRange(Product[] products)
         {
             Dictionary<int, Product> data = products.ToDictionary(e => e.Id);
             IEnumerable<Product> baseline = _context.Products.Where(e => data.Keys.Contains(e.Id));

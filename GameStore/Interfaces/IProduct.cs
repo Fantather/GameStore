@@ -9,7 +9,7 @@ namespace GameStore.Interfaces
         Product GetProduct(int id);
         void UpdateProduct(Product product);
         void AddProduct(Product product);
-        void UpdateAll(Product[] products);
+        void UpdateRange(Product[] products);
         void DeleteProduct(Product product);
         PagedList<Product> GetProducts(QueryOptions options);
     }

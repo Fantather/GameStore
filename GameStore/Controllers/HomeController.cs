@@ -1,7 +1,9 @@
 using GameStore.Interfaces;
 using GameStore.Models;
 using GameStore.Models.Pages;
+using GameStore.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System.Diagnostics;
 
 namespace GameStore.Controllers
@@ -94,6 +96,22 @@ namespace GameStore.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+
+
+        [HttpGet]
+        public IActionResult UpdateRangeProducts(QueryOptions options)
+        {
+            return View(new UpdateRangeProductsViewModel(_products.GetProducts(options), _categories.GetAllCategories()));
+        }
+
+        [HttpPost]
+        public IActionResult UpdateRangeProducts(QueryOptions options, Product[] products)
+        {
+            _products.UpdateRange(products);
+            return RedirectToAction(nameof(Index), options);
+        }
+
+
         [HttpPost]
         public IActionResult DeleteProduct(Product product)
         {
