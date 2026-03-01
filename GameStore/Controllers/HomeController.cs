@@ -97,6 +97,12 @@ namespace GameStore.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost]
+        public void CreateProduct(Product product)
+        {
+            _products.AddProduct(product);
+        }
+
 
         [HttpGet]
         public IActionResult UpdateRangeProducts(QueryOptions options)

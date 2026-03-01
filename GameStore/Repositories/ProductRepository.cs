@@ -52,7 +52,7 @@ namespace GameStore.Repositories
             {
                 Product requestProduct = data[product.Id];
                 product.Name = requestProduct.Name;
-                product.Category = requestProduct.Category;
+                product.CategoryId = requestProduct.CategoryId;
                 product.RetailPrice = requestProduct.RetailPrice;
                 product.PurchasePrice = requestProduct.PurchasePrice;
             }

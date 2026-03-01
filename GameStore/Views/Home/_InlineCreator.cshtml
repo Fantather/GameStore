@@ -1,0 +1,29 @@
+﻿@model InlineCreatorViewModel
+
+<form class="card" asp-controller="Home" asp-action="CreateProduct">
+    <div>
+        <label asp-for="@Model.Product.Id">@Html.DisplayNameFor(model => model.Product.Id)</label>
+        <input asp-for="@Model.Product.Id" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="@Model.Product.Name">@Html.DisplayNameFor(model => model.Product.Name)</label>
+        <input asp-for="@Model.Product.Name" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="@Model.Product.PurchasePrice">@Html.DisplayNameFor(model => model.Product.PurchasePrice)</label>
+        <input asp-for="@Model.Product.PurchasePrice" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="@Model.Product.RetailPrice">@Html.DisplayNameFor(model => model.Product.RetailPrice)</label>
+        <input asp-for="@Model.Product.RetailPrice" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="@Model.Product.CategoryId">@Html.DisplayNameFor(model => model.Product.CategoryId)</label>
+        <select asp-for="@Model.Product.CategoryId" class="form-control">
+            @foreach(var category in Model.Categories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+    </div>
+</form>
