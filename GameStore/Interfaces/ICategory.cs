@@ -1,4 +1,5 @@
 ﻿using GameStore.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GameStore.Interfaces
 {
@@ -8,5 +9,6 @@ namespace GameStore.Interfaces
         void AddCategory(Category category);
         void UpdateCategory(Category category);
         void DeleteCategory(Category category);
+        Task UpdateRangeAsync(Category[] categories);
     }
 }

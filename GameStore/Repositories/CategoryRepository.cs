@@ -35,5 +35,11 @@ namespace GameStore.Repositories
             _context.Categories.Remove(category);
             _context.SaveChanges();
         }
+
+        public async Task UpdateRangeAsync(Category[] categories)
+        {
+            _context.Categories.UpdateRange(categories);
+            await _context.SaveChangesAsync();
+        }
     }
 }

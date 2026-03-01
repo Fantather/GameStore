@@ -75,7 +75,7 @@ namespace GameStore.Controllers
         [HttpGet]
         public IActionResult Index(QueryOptions options)
         {
-            return View(_products.GetProducts(options));
+            return View(new HomeIndexViewModel(_products.GetProducts(options), _categories.GetAllCategories()));
         }
         [HttpGet]
         public IActionResult UpdateProduct(int id)
@@ -98,9 +98,10 @@ namespace GameStore.Controllers
         }
 
         [HttpPost]
-        public void CreateProduct(Product product)
+        public IActionResult CreateProduct(QueryOptions options, Product product)
         {
             _products.AddProduct(product);
+            return RedirectToAction("Index", options);
         }
 
 

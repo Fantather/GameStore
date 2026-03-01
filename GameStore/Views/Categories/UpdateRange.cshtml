@@ -1,0 +1,38 @@
+﻿@model List<Category>
+
+@{
+    ViewData["Title"] = "Редактировать все категории";
+}
+
+<h1>Редактировать все категории</h1>
+
+<form asp-action="UpdateRange" method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].Description)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <input type="hidden" asp-for="@Model[i].Id" />
+                    <td>
+                        <input asp-for="@Model[i].Name" />
+                    </td>
+                    <td>
+                        <input asp-for="@Model[i].Description" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
